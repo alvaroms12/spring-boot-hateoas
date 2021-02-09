@@ -6,13 +6,17 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import com.capgemini.spring.boot.hateoas.propuesto.model.dto.TeamDto;
 import com.capgemini.spring.boot.hateoas.propuesto.services.TeamRest;
 
-
 public class TeamHal {
 
 	public static void linkSelf(TeamDto dto) {
 
 		Link link = WebMvcLinkBuilder.linkTo(TeamRest.class).slash(dto.getId()).withSelfRel();
 
+		dto.add(link);
+	}
+
+	public static void linkAllTeams(TeamDto dto) {
+		Link link = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TeamRest.class).findAll()).withRel("teams");
 		dto.add(link);
 	}
 

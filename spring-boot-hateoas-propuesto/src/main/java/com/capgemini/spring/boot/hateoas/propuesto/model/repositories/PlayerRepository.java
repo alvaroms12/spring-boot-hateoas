@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.capgemini.spring.boot.hateoas.propuesto.model.entities.Player;
 
 public interface PlayerRepository extends JpaRepository<Player, Integer>{
-
+	Player findByTeam(Integer idTeam);
 }

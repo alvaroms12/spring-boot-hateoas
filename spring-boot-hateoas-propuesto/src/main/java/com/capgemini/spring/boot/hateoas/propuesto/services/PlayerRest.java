@@ -13,28 +13,26 @@ import com.capgemini.spring.boot.hateoas.propuesto.model.dto.PlayerDto;
 import com.capgemini.spring.boot.hateoas.propuesto.model.repositories.PlayerRepository;
 import com.capgemini.spring.boot.hateoas.propuesto.utilities.ConvertEntityDto;
 
-
-
 @RestController
 @RequestMapping("/players")
 public class PlayerRest {
 
 	@Autowired
 	private PlayerRepository repository;
-	
+
 	@GetMapping("")
 	public List<PlayerDto> findAll() {
 		List<PlayerDto> listDto = new ArrayList<PlayerDto>();
-		
+
 		repository.findAll().forEach((entity) -> {
 			PlayerDto dto = ConvertEntityDto.fromPEntityToPDto(entity);
-			
+
 			PlayerHal.linkSelf(dto);
-			
+
 			listDto.add(dto);
 		});
-		
+
 		return listDto;
 	}
-	
+
 }

@@ -4,6 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.capgemini.spring.boot.hateoas.propuesto.model.entities.Team;
 
-public interface TeamRepository extends JpaRepository<Team, Integer>{
+public interface TeamRepository extends JpaRepository<Team, Integer> {
+
+	Team findByName(String name);
+
+	Team findByStadium(String stadium);
 
 }
